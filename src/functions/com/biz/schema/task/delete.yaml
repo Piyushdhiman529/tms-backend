@@ -1,0 +1,7 @@
+summary: Delete Task
+tasks:
+  - id: schema_task_delete
+    fn: datasource.schema.Task.delete
+    args:
+      where:
+        id: <% inputs.params.id %>

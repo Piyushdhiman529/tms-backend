@@ -1,0 +1,7 @@
+summary: Fetch Task
+tasks:
+  - id: schema_task_one
+    fn: datasource.schema.Task.findUnique
+    args:
+      where:
+        id: <% inputs.params.id %>

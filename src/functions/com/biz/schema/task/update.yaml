@@ -1,0 +1,8 @@
+summary: Update Task
+tasks:
+  - id: schema_task_update
+    fn: datasource.schema.Task.update
+    args:
+      where:
+        id: <% inputs.params.id %>
+      data: <% inputs.body %>

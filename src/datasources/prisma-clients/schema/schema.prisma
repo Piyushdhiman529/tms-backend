@@ -1,0 +1,40 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./prisma-clients/schema" //just change the name of prisma schema here 
+  previewFeatures = ["metrics"] // to be used in case you want to generate metrics for prisma queries for telemetry. 
+}
+
+datasource db {
+  provider = "mongodb" // Change to "mysql" if using MySQL
+  url      = env("DB_URL")
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  password String
+  tasks    Task[]
+}
+
+enum Status {
+  TO_DO
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Task {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  dueDate     DateTime
+  status      Status
+  priority    Priority
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+}

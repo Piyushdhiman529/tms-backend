@@ -1,0 +1,6 @@
+summary: Create Task
+tasks:
+  - id: schema_task_create
+    fn: datasource.schema.Task.create
+    args:
+      data: <% inputs.body %>
